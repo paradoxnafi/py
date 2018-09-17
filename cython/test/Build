@@ -1,0 +1,11 @@
+read -p "File name: " name
+read -p "Without extension: " wext
+
+echo "from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(ext_modules = cythonize('$name'))" > setup.py
+
+python3 setup.py build_ext --inplace
+
+echo "import $wext" > run.py
